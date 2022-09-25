@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    {% if title %}
+        <title>{{ title }} - Server UI</title>
+    {% else %}
+        <title>Server UI</title>
+    {% endif %}
+    <!-- CSS files -->
+    <link href="{{ url_for('static', filename='css/tabler.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='css/tabler-flags.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='css/tabler-payments.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='css/tabler-vendors.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='css/demo.min.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  </head>
+  <body  class=" border-top-wide border-primary d-flex flex-column">
+    <div class="page page-center">
+      <div class="container-tight py-4">
+        <div class="text-center mb-4">
+          <a href="." class="navbar-brand navbar-brand-autodark"><img src="{{ url_for('static', filename='logo.svg') }}" height="36" alt=""></a>
+        </div>
+        <form class="card card-md" action="" method="post">
+          {{ form.hidden_tag() }}
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Create new account</h2>
+            <div class="mb-3">
+              {{ form.username.label(class="form-control-label form-label") }}
+              {% if form.username.errors %}
+                        {{ form.username(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control", placeholder="Enter name") }}
+                    {% endif %}
+            </div>
+            <div class="mb-3">
+              {{ form.email.label(class="form-control-label form-label") }}
+              {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control", placeholder="Enter email") }}
+                    {% endif %}
+            </div>
+            <div class="mb-3">
+              {{ form.password.label(class="form-control-label form-label") }}
+              <div class="input-group input-group-flat">
+                {% if form.password.errors %}
+                        {{ form.password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control", placeholder="Password", autocomplete="off") }}
+                    {% endif %}
+                <span class="input-group-text">
+                  <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              {{ form.confirm_password.label(class="form-control-label form-label") }}
+              <div class="input-group input-group-flat">
+                  {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control", placeholder="Confirm password", autocomplete="off") }}
+                    {% endif %}
+                <span class="input-group-text">
+                  <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <div class="form-footer">
+                {{ form.submit(class="btn btn-primary w-100") }}
+
+            </div>
+          </div>
+        </form>
+        <div class="text-center text-muted mt-3">
+          Already have account? <a href="{{ url_for('users.login') }}" tabindex="-1">Sign in</a>
+        </div>
+      </div>
+    </div>
+    <!-- Libs JS -->
+    <!-- Tabler Core -->
+    <script src="{{ url_for('static', filename='js/tabler.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/demo.min.js') }}"></script>
+  </body>
+</html>

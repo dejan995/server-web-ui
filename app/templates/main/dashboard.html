@@ -1,0 +1,194 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+<div class="container-xl" xmlns="http://www.w3.org/1999/html">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+                    {{ hostname }}
+                </div>
+                <h2 class="page-title">
+                    Dashboard
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row row-deck row-cards">
+            <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="subheader">CPU Usage</div>
+                        </div>
+                        <div class="h1 mb-3">{{ cpu_usage }}%</div>
+                        <div class="progress" style="height: 25px;">
+                            <div aria-valuemax="100" aria-valuemin="0"
+                                 aria-valuenow="{{ cpu_usage }}%" class="progress-bar bg-{{ cpu_color }}"
+                                 role="progressbar" style="width: {{ cpu_usage }}%">
+                                <span class="visually-hidden">CPU Usage is {{ cpu_usage }}%</span>{{ cpu_usage }}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="subheader">RAM Usage</div>
+                            <div class="subheader ms-auto lh-1">
+                                Available: {{ available_ram }} GB
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline">
+                            <div class="h1 mb-3 me-2">{{ ram_usage }}%</div>
+                            <div class="me-auto">
+                      <span class="text-muted d-inline-flex align-items-center lh-1">
+                        <small>of {{ total_ram }} GB</small>
+                      </span>
+                            </div>
+                        </div>
+                        <div class="progress" style="height: 25px;">
+                            <div aria-valuemax="100" aria-valuemin="0"
+                                 aria-valuenow="{{ ram_usage }}%" class="progress-bar bg-{{ ram_color }}"
+                                 role="progressbar" style="width: {{ ram_usage }}%">
+                                <span class="visually-hidden">RAM Usage is {{ ram_usage }}%</span>{{ ram_usage }}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="subheader">New clients</div>
+                            <div class="ms-auto lh-1">
+                                <div class="dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted"
+                                       data-bs-toggle="dropdown"
+                                       href="#">Last 7 days</a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item active" href="#">Last 7 days</a>
+                                        <a class="dropdown-item" href="#">Last 30 days</a>
+                                        <a class="dropdown-item" href="#">Last 3 months</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline">
+                            <div class="h1 mb-3 me-2">6,782</div>
+                            <div class="me-auto">
+                      <span class="text-yellow d-inline-flex align-items-center lh-1">
+                        0%
+                          <!-- Download SVG icon from http://tabler-icons.io/i/minus -->
+                        <svg class="icon ms-1" fill="none" height="24" stroke="currentColor"
+                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                             width="24"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+                          <line x1="5" x2="19" y1="12" y2="12"/>
+                        </svg>
+                      </span>
+                            </div>
+                        </div>
+                        <div class="chart-sm" id="chart-new-clients"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="subheader">Active users</div>
+                            <div class="ms-auto lh-1">
+                                <div class="dropdown">
+                                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle text-muted"
+                                       data-bs-toggle="dropdown"
+                                       href="#">Last 7 days</a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item active" href="#">Last 7 days</a>
+                                        <a class="dropdown-item" href="#">Last 30 days</a>
+                                        <a class="dropdown-item" href="#">Last 3 months</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-baseline">
+                            <div class="h1 mb-3 me-2">2,986</div>
+                            <div class="me-auto">
+                <span class="text-green d-inline-flex align-items-center lh-1">
+                  4%
+                    <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                  <svg class="icon ms-1" fill="none" height="24" stroke="currentColor"
+                       stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+                    <polyline points="3 17 9 11 13 15 21 7"/>
+                    <polyline points="14 7 21 7 21 14"/>
+                  </svg>
+                </span>
+                            </div>
+                        </div>
+                        <div class="chart-sm" id="chart-active-users"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card" style="height: calc(24rem + 10px)">
+                    <div class="card-body-scrollable card-body-scrollable-shadow">
+                        <div class="divide-y">
+                            <div class="table-responsive">
+                                <table class="table table-vcenter text-nowrap card-table">
+                                    <thead>
+                                    <tr>
+                                        <th>PID</th>
+                                        <th>Username</th>
+                                        <th>Process Name</th>
+                                        <th>Kill process</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for item in procs.items() %}
+                                    <tr>
+                                        <td>{{item[0]}}</td>
+                                        <td>{{item[1]['username']}}</td>
+                                        <td>{{item[1]['name']}}</td>
+                                        <td>
+                                            <!--
+                                            <button class="btn btn-danger btn-sm mr-1" data-bs-target="#modal-danger"
+                                                    data-bs-toggle="modal" type="button"><i
+                                                    class="fa fa-trash"></i></button>
+                                                    -->
+                                            <button type="submit" formaction="{{ url_for("main.kill_process", pid = item[0]) }}" pid = {{item[0]}} class="btn btn-danger btn-sm mr-1" id="kill_process" method="post"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
+
+
+{% block modals %}
+
+{% endblock modals %}
+
+
+{% block javascripts %}
+
+{% endblock javascripts %}
